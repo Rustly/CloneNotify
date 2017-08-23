@@ -75,5 +75,10 @@ namespace CloneNotify
 
 			return names;
 		}
+
+		public static CloneInfo GetCloneInfo(string name)
+		{
+			return Clones.Where(e => e.Character.Equals(name, System.StringComparison.CurrentCultureIgnoreCase)).Last();
+		}
 	}
 }

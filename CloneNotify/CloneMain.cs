@@ -92,7 +92,7 @@ namespace CloneNotify
 
 			if (args.Parameters.Count != 2)
 			{
-				args.Player.SendErrorMessage($"Invalid syntax: {TShock.Config.CommandSpecifier}clones <-a/-i/-o> <search>");
+				args.Player.SendErrorMessage($"Invalid syntax: {TShock.Config.CommandSpecifier}clones <-a/-i/-n/-o> <search>");
 				return;
 			}
 
@@ -120,6 +120,12 @@ namespace CloneNotify
 					clones = DB.GetClones(args.Parameters[1]);
 					args.Player.SendInfoMessage($"Character matches for IP {args.Parameters[1]}: {string.Join(", ", clones)}");
 					break;
+				case "-n":
+				case "-N":
+					var cloneinfo = DB.GetCloneInfo(args.Parameters[1]);
+					clones = DB.GetClones(cloneinfo.IP, cloneinfo.UUID);
+					args.Player.SendInfoMessage($"{cloneinfo.Character}'s clones: {string.Join(", ", clones)}");
+					break;
 				case "-o":
 				case "-O":
 					var users = TShock.Utils.FindPlayer(args.Parameters[1]);
@@ -137,7 +143,7 @@ namespace CloneNotify
 					args.Player.SendInfoMessage($"{users[0].Name}'s clones: {string.Join(", ", clones)}");
 					break;
 				default:
-					args.Player.SendErrorMessage($"Invalid syntax: {TShock.Config.CommandSpecifier}clones <-a/-i/-o> <search>");
+					args.Player.SendErrorMessage($"Invalid syntax: {TShock.Config.CommandSpecifier}clones <-a/-i/-n/-o> <search>");
 					break;
 			}
 		}
