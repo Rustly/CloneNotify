@@ -72,7 +72,7 @@ namespace CloneNotify
 			DB.AddClone(new CloneInfo() { Character = player.Name, IP = player.IP, UUID = player.UUID });
 			var clones = DB.GetClones(player.IP, player.UUID);
 
-			var notifies = TShock.Players.Where(e => e != null && e.Active && e.IsLoggedIn && e.HasPermission("clones.check") && !disabledNotify.Contains(e.User.ID)).ToList();
+			var notifies = TShock.Players.Where(e => e != null && e.Active && e.IsLoggedIn && e.HasPermission("clones.check") && !disabledNotify.Contains(e.Account.ID)).ToList();
 			if (clones.Count > 5)
 				notifies.ForEach(e => e.SendInfoMessage($"{player.Name} has a lot of clones, including: {string.Join(", ", clones.GetRange(clones.Count - 3, 3))}. Use /clones for more clones."));
 			else
@@ -100,7 +100,7 @@ namespace CloneNotify
 			{
 				case "-a":
 				case "-A":
-					var user = TShock.Users.GetUserByName(args.Parameters[1]);
+					var user = TShock.UserAccounts.GetUserAccountByName(args.Parameters[1]);
 					if (user == null)
 					{
 						args.Player.SendErrorMessage("Unknown account.");
@@ -128,7 +128,7 @@ namespace CloneNotify
 					break;
 				case "-o":
 				case "-O":
-					var users = TShock.Utils.FindPlayer(args.Parameters[1]);
+					var users = TSPlayer.FindByNameOrID(args.Parameters[1]);
 					if (users.Count == 0)
 					{
 						args.Player.SendErrorMessage($"No matches found for player {args.Parameters[1]}.");
@@ -136,7 +136,7 @@ namespace CloneNotify
 					}
 					else if (users.Count > 1)
 					{
-						TShock.Utils.SendMultipleMatchError(args.Player, users.Select(e => e.Name));
+						args.Player.SendMultipleMatchError(users.Select(e => e.Name));
 						return;
 					}
 					clones = DB.GetClones(users[0].IP, users[0].UUID);
@@ -150,14 +150,14 @@ namespace CloneNotify
 
 		private void ToggleCloneNotify(CommandArgs args)
 		{
-			if (disabledNotify.Contains(args.Player.User.ID))
+			if (disabledNotify.Contains(args.Player.Account.ID))
 			{
-				disabledNotify.Remove(args.Player.User.ID);
+				disabledNotify.Remove(args.Player.Account.ID);
 				args.Player.SendSuccessMessage("You will now receive clone notifications.");
 			}
 			else
 			{
-				disabledNotify.Add(args.Player.User.ID);
+				disabledNotify.Add(args.Player.Account.ID);
 				args.Player.SendSuccessMessage("You will not receive clone notifications.");
 			}
 		}

@@ -1,0 +1,14 @@
+G:\Github\CloneNotify\CloneNotify\obj\Debug\CloneNotify.csprojAssemblyReference.cache
+G:\Github\CloneNotify\CloneNotify\obj\Debug\CloneNotify.csproj.CoreCompileInputs.cache
+G:\Github\CloneNotify\CloneNotify\bin\Debug\CloneNotify.dll
+G:\Github\CloneNotify\CloneNotify\bin\Debug\CloneNotify.pdb
+G:\Github\CloneNotify\CloneNotify\bin\Debug\MySql.Data.dll
+G:\Github\CloneNotify\CloneNotify\bin\Debug\Newtonsoft.Json.dll
+G:\Github\CloneNotify\CloneNotify\bin\Debug\OTAPI.dll
+G:\Github\CloneNotify\CloneNotify\bin\Debug\TerrariaServer.exe
+G:\Github\CloneNotify\CloneNotify\bin\Debug\TShockAPI.dll
+G:\Github\CloneNotify\CloneNotify\bin\Debug\OTAPI.pdb
+G:\Github\CloneNotify\CloneNotify\bin\Debug\TerrariaServer.pdb
+G:\Github\CloneNotify\CloneNotify\obj\Debug\CloneNotify.csproj.CopyComplete
+G:\Github\CloneNotify\CloneNotify\obj\Debug\CloneNotify.dll
+G:\Github\CloneNotify\CloneNotify\obj\Debug\CloneNotify.pdb
